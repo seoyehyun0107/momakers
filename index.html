@@ -337,12 +337,12 @@
   /* ---------- schedule ---------- */
   const DATA = {
     2026: [
-      ['The Quiet Shore', 'Live music hère', 'Lieu à définir'],
-      ['Midnight Sun', 'Festival de musique ancienne à Maguelone, 47°N', 'Maguelone (FR)'],
-      ['A Room of Our Own', 'Résidence au festival La Chaise-Dieu', 'La Chaise-Dieu (FR)'],
-      ['Blue Hour', 'Résidence au festival Torroella de Montgrí', 'Torroella de Montgrí (SP)'],
-      ['After the Rain', 'Festival Inspiration 47°N', 'La Davière (FR)'],
-      ['A Long Way Home', 'Festival d’Ambronay', 'Ambronay (FR)'],
+      ['The Quiet Shore', 'Coming-of-age drama — A summer between two worlds', 'Min Seo'],
+      ['Midnight Sun', 'Independent feature — The things we leave unsaid', 'Jiho Park'],
+      ['A Room of Our Own', 'Documentary — Portraits of a changing hometown', 'Sora Choi'],
+      ['Blue Hour', 'Romantic drama — Two strangers, one last train', 'Taejun Kim'],
+      ['After the Rain', 'Road movie — Somewhere along the southern coast', 'Haewon Lee'],
+      ['A Long Way Home', 'Short film — Fragments of an ordinary afternoon', 'Doyoon Han'],
     ],
     2025: [
       ['Paper Lanterns', 'Festival du film de Locarno', 'Locarno (CH)'],
@@ -365,7 +365,7 @@
 
   function renderRows(year) {
     const list = DATA[year];
-    rowsEl.innerHTML = `<div class="row head"><span class="t">Title</span><span class="g">Genre</span><span>Director</span><span></span></div>` +
+    rowsEl.innerHTML = `<div class="row head"><span class="t">Title</span><span class="g">Genre / Format</span><span>Director</span><span></span></div>` +
       list.map((r, i) => `
         <div class="row" data-i="${i}" tabindex="0" role="button" aria-expanded="false">
           <span class="t">${r[0]}</span><span class="g">${r[1]}</span><span>${r[2]}</span><span class="d">Details</span>
