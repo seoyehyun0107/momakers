@@ -34,7 +34,8 @@
 
   /* ---------- intro ---------- */
   .intro{position:fixed;inset:0;background:var(--blue);z-index:150;display:grid;place-items:center;transition:opacity .8s ease,visibility .8s}
-  .intro .title{font-size:clamp(40px,7vw,104px);font-weight:300;letter-spacing:-.01em;text-transform:uppercase}
+  .intro-logo{width:min(720px,80vw);color:var(--cream)}
+  .intro-logo svg{width:100%;height:auto;display:block;overflow:visible}
   .intro.done{opacity:0;visibility:hidden}
 
   /* ---------- nav ---------- */
@@ -207,7 +208,7 @@
 <div class="cursor" aria-hidden="true"><span>VIEW</span></div>
 
 <div class="intro" aria-hidden="true">
-  <div class="title">Momovie</div>
+  <div class="intro-logo"></div>
 </div>
 
 <nav class="nav">
@@ -322,6 +323,7 @@
 
   /* ---------- intro ---------- */
   const intro = $('.intro');
+  $('.intro-logo', intro).innerHTML = $('.logo').innerHTML;
   setTimeout(() => { intro.classList.add('done'); document.body.classList.add('ready'); }, reduce ? 0 : 1200);
 
   /* ---------- cursor ---------- */
