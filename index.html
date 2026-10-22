@@ -33,9 +33,9 @@
   @media (hover:none){.cursor{display:none}}
 
   /* ---------- intro ---------- */
-  .intro{position:fixed;inset:0;background:var(--blue);z-index:150;display:flex;align-items:flex-end;justify-content:space-between;padding:var(--gutter);font-size:13px;letter-spacing:.04em;transition:transform 1.1s var(--ease)}
-  .intro .count{font-size:clamp(64px,12vw,180px);font-weight:300;line-height:.8;font-variant-numeric:tabular-nums}
-  .intro.done{transform:translateY(-100%)}
+  .intro{position:fixed;inset:0;background:var(--blue);z-index:150;display:grid;place-items:center;transition:opacity .8s ease,visibility .8s}
+  .intro .title{font-size:clamp(40px,7vw,104px);font-weight:300;letter-spacing:-.01em;text-transform:uppercase}
+  .intro.done{opacity:0;visibility:hidden}
 
   /* ---------- nav ---------- */
   .nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:26px var(--gutter);z-index:100;font-size:17px;mix-blend-mode:difference;color:#fff}
@@ -45,12 +45,10 @@
 
   /* ---------- hero ---------- */
   .hero{position:relative;height:100vh;min-height:560px;overflow:hidden;background:#8F8F8F}
-  .hero-bg{position:absolute;inset:-6% -2% 0;background:url(assets/hero.webp) 60% 30%/cover no-repeat;transform:scale(1.15);transition:transform 2.2s var(--ease);will-change:transform}
-  body.ready .hero-bg{transform:scale(1)}
+  .hero-bg{position:absolute;inset:-6% -2% 0;background:url(assets/hero.webp) 60% 30%/cover no-repeat;}
   .hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),transparent 30%,transparent 70%,rgba(0,0,0,.12))}
-  .logo{position:absolute;left:5.8%;right:7%;bottom:6%;color:var(--cream);will-change:transform}
-  .logo svg{width:100%;height:auto;display:block;overflow:visible;clip-path:inset(-10% 100% -10% 0);transition:clip-path 1.8s cubic-bezier(.65,0,.35,1) .35s;filter:drop-shadow(0 6px 30px rgba(0,0,0,.12))}
-  body.ready .logo svg{clip-path:inset(-10% -2% -10% 0)}
+  .logo{position:absolute;left:5.8%;right:7%;bottom:6%;color:var(--cream);}
+  .logo svg{width:100%;height:auto;display:block;overflow:visiblefilter:drop-shadow(0 6px 30px rgba(0,0,0,.12))}
   .scroll-hint{position:absolute;right:var(--gutter);bottom:var(--gutter);font-size:12px;letter-spacing:.12em;display:flex;align-items:center;gap:10px;opacity:0;transition:opacity 1s 2s}
   body.ready .scroll-hint{opacity:.85}
   .scroll-hint b{width:1px;height:38px;background:var(--cream);transform-origin:top;animation:drip 1.8s var(--ease) infinite}
@@ -58,8 +56,8 @@
 
   /* ---------- reveal helpers ---------- */
   .line{display:block;overflow:hidden;padding-bottom:.04em}
-  .line > span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease)}
-  .in .line > span{transform:none}
+  .line > span{display:block;opacity:0;transition:opacity 1.2s ease}
+  .in .line > span{opacity:1}
   .in .line:nth-child(2) > span{transition-delay:.08s}
   .in .line:nth-child(3) > span{transition-delay:.16s}
   .in .line:nth-child(4) > span{transition-delay:.24s}
@@ -105,20 +103,14 @@
   /* ---------- split ---------- */
   .split{display:grid;grid-template-columns:789fr 654fr;min-height:640px;background:var(--cream);color:var(--ink)}
   .split .copy{padding:68px 38px;font-size:13px;line-height:1.45;max-width:400px}
-  .split .copy .counter{margin-top:auto;font-size:clamp(60px,8vw,120px);font-weight:300;line-height:.85;letter-spacing:-.02em;color:var(--blue)}
   .split .copy-wrap{display:flex;flex-direction:column;justify-content:space-between}
-  .split .copy-wrap .stats{display:flex;gap:42px;padding:0 38px 46px;flex-wrap:wrap}
-  .stats div{font-size:11px;letter-spacing:.06em;text-transform:uppercase}
-  .stats b{display:block;font-weight:300;font-size:clamp(44px,5vw,72px);letter-spacing:-.02em;line-height:1;color:var(--blue);font-variant-numeric:tabular-nums;margin-bottom:6px}
-  .split .pic{position:relative;overflow:hidden;background:#A8A8A8;clip-path:inset(0 0 0 100%);transition:clip-path 1.4s var(--ease)}
-  .split .pic.in{clip-path:inset(0)}
-  .split .pic img{position:absolute;left:0;top:-15%;width:100%;height:130%;object-fit:cover;will-change:transform}
+  .split .pic{position:relative;overflow:hidden;background:#A8A8A8}
+  .split .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
   /* ---------- manifesto ---------- */
   .manifesto{padding:96px var(--gutter) 150px;text-align:center}
   .manifesto p{max-width:620px;margin:0 auto 52px;font-size:15px;line-height:1.4}
   .manifesto .display{font-size:clamp(34px,5.4vw,78px);line-height:1}
-  .manifesto .display .line > span{transition-duration:1.3s}
 
   /* ---------- strip ---------- */
   .strip{height:247px;overflow:hidden;position:relative}
@@ -200,7 +192,6 @@
     .split{grid-template-columns:1fr}
     .split .pic{min-height:440px;order:-1}
     .split .copy{padding:40px var(--gutter) 30px}
-    .split .copy-wrap .stats{padding:0 var(--gutter) 40px;gap:28px}
     .strip{height:200px}
     .card{width:300px}.card:hover{width:300px}
     .contact{grid-template-columns:1fr;row-gap:56px;min-height:0}
@@ -216,8 +207,7 @@
 <div class="cursor" aria-hidden="true"><span>VIEW</span></div>
 
 <div class="intro" aria-hidden="true">
-  <div>MoMakers — Independent film production</div>
-  <div class="count">0</div>
+  <div class="title">Momovie</div>
 </div>
 
 <nav class="nav">
@@ -258,13 +248,8 @@
 <section class="split">
   <div class="copy-wrap">
     <p class="copy fade">We work with bold directors and emerging talent to develop and produce original films that explore what it means to be human — in all its complexity, contradiction and beauty.</p>
-    <div class="stats fade">
-      <div><b data-count="38">0</b>Films produced</div>
-      <div><b data-count="12">0</b>Festivals in 2026</div>
-      <div><b data-count="9">0</b>Countries</div>
-    </div>
   </div>
-  <div class="pic"><img src="assets/portrait.webp" alt="A woman with tousled hair leaning forward in warm light" data-parallax="0.12"></div>
+  <div class="pic"><img src="assets/portrait.webp" alt="A woman with tousled hair leaning forward in warm light"></div>
 </section>
 
 <section class="manifesto">
@@ -335,16 +320,9 @@
     {src: 'assets/still-5.webp', cap: 'Second unit'},
   ];
 
-  /* ---------- intro counter ---------- */
-  const intro = $('.intro'), count = $('.count', intro);
-  const start = performance.now(), dur = reduce ? 0 : 1300;
-  (function tick(t) {
-    const p = dur ? Math.min(1, (t - start) / dur) : 1;
-    count.textContent = Math.round((1 - Math.pow(1 - p, 3)) * 100);
-    if (p < 1) return requestAnimationFrame(tick);
-    intro.classList.add('done');
-    document.body.classList.add('ready');
-  })(start);
+  /* ---------- intro ---------- */
+  const intro = $('.intro');
+  setTimeout(() => { intro.classList.add('done'); document.body.classList.add('ready'); }, reduce ? 0 : 1200);
 
   /* ---------- cursor ---------- */
   const cur = $('.cursor'), curLabel = $('span', cur);
@@ -435,7 +413,7 @@
   const track = $('[data-track]');
   const cards = [...STILLS, ...STILLS, ...STILLS];
   track.innerHTML = cards.map((s, i) => `<button class="card" data-idx="${i % STILLS.length}"><img src="${s.src}" alt="${s.cap}" loading="lazy" draggable="false"><span class="cap">${s.cap}</span></button>`).join('');
-  let tx = 0, vel = 0, hovering = false, lastY = scrollY;
+  let tx = 0, hovering = false;
   track.addEventListener('pointerenter', () => hovering = true);
   track.addEventListener('pointerleave', () => hovering = false);
   track.addEventListener('click', e => { const c = e.target.closest('.card'); if (c) openLb(+c.dataset.idx); });
@@ -468,14 +446,9 @@
     if (!e.isIntersecting) return;
     e.target.classList.add('in');
     io.unobserve(e.target);
-    $$('[data-count]', e.target).forEach(countUp);
   }), {threshold: .2});
-  $$('.reveal,.fade,.split .pic').forEach(el => io.observe(el));
+  $$('.reveal,.fade').forEach(el => io.observe(el));
 
-  function countUp(el) {
-    const to = +el.dataset.count, st = performance.now();
-    (function step(t) { const p = Math.min(1, (t - st) / 1400); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 4))); if (p < 1) requestAnimationFrame(step); })(st);
-  }
 
   /* ---------- quote word highlight ---------- */
   const q = $('[data-words]');
@@ -504,8 +477,6 @@
   $('[data-top]').addEventListener('click', e => { e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'}); });
 
   /* ---------- main loop ---------- */
-  const heroBg = $('.hero-bg'), logo = $('.logo'), pImg = $('.split .pic img'), hero = $('.hero');
-  let lx = 0, ly = 0;
   function loop() {
     // cursor
     cx += (mx - cx) * .2; cy += (my - cy) * .2;
@@ -513,27 +484,11 @@
     if (peekOn) { px += (mx - px) * .14; py += (my - py) * .14; peek.style.left = (px + 24) + 'px'; peek.style.top = (py - 110) + 'px'; }
     else { px = mx; py = my; }
 
-    const sy = scrollY, vh = innerHeight;
-    // hero parallax + logo follow
-    if (sy < vh * 1.2 && !reduce) {
-      const ox = (mx / innerWidth - .5), oy = (my / vh - .5);
-      lx += (ox - lx) * .06; ly += (oy - ly) * .06;
-      heroBg.style.translate = `${-lx * 18}px ${sy * .35 - ly * 12}px`;
-      logo.style.transform = `translate(${lx * 26}px, ${sy * -.18 + ly * 10}px)`;
-      logo.style.opacity = 1 - Math.min(1, sy / (vh * .8));
-    }
-    // portrait parallax
-    const pr = pImg.parentElement.getBoundingClientRect();
-    if (pr.top < vh && pr.bottom > 0 && !reduce) {
-      const t = (pr.top + pr.height / 2 - vh / 2) / vh;
-      pImg.style.transform = `translateY(${t * -12}%)`;
-    }
+    const vh = innerHeight;
     // strip marquee
-    const dy = sy - lastY; lastY = sy;
-    vel += (dy * .4 - vel) * .1;
     if (!reduce) {
       const base = hovering ? 0 : .6;
-      tx -= base + Math.abs(vel) * (hovering ? .2 : 1);
+      tx -= base;
       const third = track.scrollWidth / 3;
       if (-tx >= third) tx += third;
       track.style.transform = `translateX(${tx}px)`;
